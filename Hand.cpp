@@ -3,10 +3,21 @@
 
 #include <vector>
 
+class Player;
+
+#include "Table.cpp"
+#include "Dealer.cpp"
 #include "Card.cpp"
+#include "Player.cpp"
 
 class Hand {
 	public:
+
+	Hand();
+
+	Hand(Dealer * d): dealer(d){}
+
+	Hand(Player * p): player(p){}
 
 	int sum(){
 		int val;
@@ -14,6 +25,22 @@ class Hand {
 			val += cards[i]->value();
 		}
 		return val;
+	}
+
+	bool check_bust(){
+		if(sum() > 21){
+			wager = 0;
+			return true;
+		}
+		return false;
+	}
+
+	bool blackjack(){
+		return cards.size() == 2 && sum() == 21;
+	}
+
+	void reset(){
+		cards.clear();
 	}
 
 	bool is_pair(){
@@ -34,8 +61,49 @@ class Hand {
 		return cards[0]->value();
 	}
 
+	void add_card(Card * card){
+		cards.push_back(card);
+	}
+
+	Card * split(){
+		cards.pop_back();
+		return cards[1];
+	}
+
+	void reset_wager(){
+		wager = 0;
+	}
+
+	void place_wager(int w){
+		wager = w;
+	}
+
+	void push(){
+		player->give_chips(wager);
+		wager = 0;
+	}
+
+	int get_wager(){
+		return wager;
+	}
+
+	int beats(Hand & dealer){
+		if(check_bust())
+			return LOSE;
+		if(dealer.check_bust())
+			return WIN;
+		if(sum() > dealer.sum())
+			return WIN;
+		if(sum() == dealer.sum())
+			return PUSH;
+		return LOSE;
+	}
+
 	private:
 	std::vector<Card *> cards;
+	int wager;
+	Player * player;
+	Dealer * dealer;
 };
 
 #endif

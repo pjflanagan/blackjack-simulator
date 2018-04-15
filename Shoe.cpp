@@ -1,7 +1,3 @@
-// 5 Decks
-
-// suffle function
-
 #ifndef SHOE_CPP
 #define SHOE_CPP
 

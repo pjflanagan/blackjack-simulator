@@ -16,18 +16,9 @@ int main(int argc, char *argv[]){
 	//std::ios_base::sync_with_stdio(false);
 	//std::ostringstream os; 
 	
-	Shoe shoe = Shoe();
+	Table table = Table();
 
-	for(int i = 0; i < 52*5; ++i){
-		std::cout << shoe.deal()->to_string() << "\n";
-	}
-
-	shoe.shuffle();
-
-	for(int i = 0; i < 52*5; ++i){
-		std::cout << shoe.deal()->to_string() << "\n";
-	}
-
+	table.play();
 
 	return 0;
 }
