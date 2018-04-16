@@ -19,6 +19,13 @@
 		"utility": "cpp",
 		"algorithm": "cpp",
 		"__string": "cpp",
-		"type_traits": "cpp"
+		"type_traits": "cpp",
+		"__config": "cpp",
+		"__nullptr": "cpp",
+		"exception": "cpp",
+		"new": "cpp",
+		"stdexcept": "cpp",
+		"typeinfo": "cpp",
+		"__locale": "cpp"
 	}
 }
