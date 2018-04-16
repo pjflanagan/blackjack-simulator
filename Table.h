@@ -5,18 +5,21 @@
 
 #include "Shoe.cpp"
 #include "Dealer.h"
-#include "Player.h"
-
+//#include "Player.h"
 
 class Table {
 	public:
 	Table();
 
+	void shuffle();
+
 	private:
 	Shoe shoe;
-	std::vector<Player *> players;
-	Dealer dealer;
+	//std::vector<Player *> players;
+	Dealer * dealer;
 
 };
+
+
 
 #endif

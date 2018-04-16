@@ -1,14 +1,16 @@
 #ifndef DEALER_H
 #define DEALER_H
 
-#include "Table.h"
+//#include "Table.h"
 
 class Dealer {
 	public:
 	Dealer();
+	//Dealer(Table * t);
 
 	private:
-	Table table;
+	//Table * table;
 };
+
 
 #endif

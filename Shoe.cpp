@@ -8,8 +8,8 @@
 #include <chrono>       // std::chrono::system_clock
 #include <vector>
 
+#include "Rules.cpp"
 #include "Card.cpp"
-#include "Table.cpp"
 #include "Deck.cpp"
 
 class Shoe {

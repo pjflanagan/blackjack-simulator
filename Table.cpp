@@ -3,5 +3,9 @@
 
 Table::Table(){
 	shoe = Shoe();
-	dealer = Dealer();
+	dealer = new Dealer();
+}
+
+void Table::shuffle(){
+	shoe.shuffle();
 }

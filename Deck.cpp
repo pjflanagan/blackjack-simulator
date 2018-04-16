@@ -3,8 +3,8 @@
 
 #include <string>
 
+#include "Rules.cpp"
 #include "Card.cpp"
-#include "Table.cpp"
 
 class Deck{
 	public:

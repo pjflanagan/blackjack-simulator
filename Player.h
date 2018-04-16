@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Table.h"
+class Table;
 
 class Player {
 	public:
@@ -9,9 +9,11 @@ class Player {
 	Player();
 
 	protected:
-	Table table;
+	Table * table;
 	int chips;
 
 };
+
+#include "Table.h"
 
 #endif
