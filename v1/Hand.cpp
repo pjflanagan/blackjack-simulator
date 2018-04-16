@@ -3,8 +3,6 @@
 
 #include <vector>
 
-class Player;
-
 #include "Table.cpp"
 #include "Dealer.cpp"
 #include "Card.cpp"
@@ -24,6 +22,14 @@ class Hand {
 		for(int i = 0; i < cards.size(); ++i){
 			val += cards[i]->value();
 		}
+
+		// if there are aces and can be used
+		// to equal over 17 and less than 21
+		// then use an ace as an 11
+		if(any_ace() && val >= 7 && val <= 11){
+			val += 10;
+		}
+
 		return val;
 	}
 
@@ -49,6 +55,12 @@ class Hand {
 
 	int front(){
 		return cards[0]->value();
+	}
+
+	bool any_ace(){
+		for(int i = 0; i < cards.size(); ++i)
+			if(cards[i]->is_ace())
+				return true;
 	}
 
 	bool has_ace(){
