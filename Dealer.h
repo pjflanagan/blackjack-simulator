@@ -1,15 +1,29 @@
 #ifndef DEALER_H
 #define DEALER_H
 
-//#include "Table.h"
+class Hand;
+class Table;
+
+#include "Hand.h"
+#include "Table.h"
 
 class Dealer {
 	public:
 	Dealer();
-	//Dealer(Table * t);
+	Dealer(Table * t);
+
+	void shuffle();
+
+	// burns a card
+	void burn();
+
+	Card * deal();
+
+	void add(Card * c);
 
 	private:
-	//Table * table;
+	Hand * hand;
+	Table * table;
 };
 
 

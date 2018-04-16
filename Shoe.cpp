@@ -35,7 +35,7 @@ class Shoe {
   		std::shuffle(cards.begin(), cards.end(), std::default_random_engine(seed));
 	}
 
-	Card * deal(){
+	Card * draw(){
 		Card * card = cards.front(); // get the front card
 		cards.erase(cards.begin()); // remove it from the array
 		in_play.push_back(card); // store it in play

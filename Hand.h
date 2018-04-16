@@ -2,6 +2,9 @@
 #define HAND_H
 
 #include <vector>
+#include <string>
+
+class Dealer;
 
 #include "Card.cpp"
 #include "Player.h"
@@ -9,6 +12,12 @@
 
 class Hand {
 	public:
+
+	Hand();
+
+	void add(Card * c);
+
+	std::string to_string() const;
 
 	protected:
 	std::vector<Card *> cards;
@@ -29,6 +38,8 @@ class PlayerHand : public Hand {
 // Dealer Hand extends hand
 class DealerHand : public Hand {
 	public:
+
+	Card * get_upcard();
 
 	private:
 	Dealer * dealer;
