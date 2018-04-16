@@ -2,6 +2,7 @@
 #define TABLE_H
 
 #include <vector>
+#include <iostream>
 
 #include "Shoe.cpp"
 #include "Dealer.h"
@@ -11,6 +12,8 @@
 class Table {
 	public:
 	Table();
+
+	void reset();
 
 	// starts the game
 	void play();

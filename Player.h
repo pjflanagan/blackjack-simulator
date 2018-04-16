@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-class Hand;
+class PlayerHand;
 class Table;
 
 #include "Hand.h"
@@ -15,17 +15,23 @@ class Player {
 
 	Player();
 
-	// lets the player play a turn
-	void turn();
+	void reset();
 
-	// 
 	void add(Card * c);
 
 	void print_hand();
 
+	virtual void bet();
+
+	virtual void turn();
+
 	protected:
+	virtual bool move(int m);
+
 	int chips;
-	Hand * hand;
+	bool is_split;
+	PlayerHand * hand;
+	PlayerHand * split_hand;
 	Table * table;
 
 };

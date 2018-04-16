@@ -1,7 +1,9 @@
 #ifndef DEALER_H
 #define DEALER_H
 
-class Hand;
+#include <iostream>
+
+class DealerHand;
 class Table;
 
 #include "Hand.h"
@@ -12,6 +14,8 @@ class Dealer {
 	Dealer();
 	Dealer(Table * t);
 
+	void reset();
+
 	void shuffle();
 
 	// burns a card
@@ -19,10 +23,12 @@ class Dealer {
 
 	Card * deal();
 
+	Card * get_upcard();
+
 	void add(Card * c);
 
 	private:
-	Hand * hand;
+	DealerHand * hand;
 	Table * table;
 };
 

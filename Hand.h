@@ -15,6 +15,8 @@ class Hand {
 
 	Hand();
 
+	void reset();
+
 	void add(Card * c);
 
 	std::string to_string() const;
@@ -26,8 +28,15 @@ class Hand {
 
 // Player Hand extends hand
 class PlayerHand : public Hand {
-
 	public:
+	PlayerHand();
+
+	void reset();
+
+	void place_bet(int w);
+
+	//dealer to string
+	// "Dealer is showing "
 
 	private:
 	int wager;
@@ -38,6 +47,7 @@ class PlayerHand : public Hand {
 // Dealer Hand extends hand
 class DealerHand : public Hand {
 	public:
+	DealerHand();
 
 	Card * get_upcard();
 

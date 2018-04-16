@@ -4,7 +4,11 @@
 Dealer::Dealer(){}
 
 Dealer::Dealer(Table * t) : table(t) {
-	hand = new Hand;
+	hand = new DealerHand();
+}
+
+void Dealer::reset(){
+	hand->reset();
 }
 
 void Dealer::shuffle() {
@@ -13,6 +17,7 @@ void Dealer::shuffle() {
 
 void Dealer::burn(){
 	deal();
+	std::cout << "Dealer burns.\n";
 }
 
 Card * Dealer::deal(){
@@ -21,4 +26,8 @@ Card * Dealer::deal(){
 
 void Dealer::add(Card * c){
 	hand->add(c);
+}
+
+Card * Dealer::get_upcard(){
+	return hand->get_upcard();
 }

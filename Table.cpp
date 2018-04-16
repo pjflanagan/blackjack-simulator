@@ -1,13 +1,20 @@
 
 #include "Table.h"
 #include "Dealer.h"
+#include "AI.cpp"
+#include "Human.cpp"
 
 Table::Table(){
 	shoe = Shoe();
 	shoe.shuffle();
 	dealer = Dealer(this);
-	players.push_back(new Player);
-	players.push_back(new Player);
+	players.push_back(new AI());
+	players.push_back(new AI());
+}
+
+void Table::reset(){
+	shuffle();
+	dealer.reset();
 }
 
 void Table::shuffle(){
@@ -15,18 +22,32 @@ void Table::shuffle(){
 }
 
 void Table::play(){
-	dealer.shuffle();
+	dealer.shuffle(); // initially shuffle the deck
 	round();
 }
 
 void Table::round(){
+	std::cout << "Round begins.\n";
 	dealer.burn();
+	for(int i = 0; i < players.size(); ++i){
+		players[i]->bet();
+	}
 	deal();
+
+	std::cout << "Dealer is showing " << dealer.get_upcard()->to_string() << "\n";
+
 	//take turns
 	for(int i = 0; i < players.size(); ++i){
-		players[i]->print_hand();
+		players[i]->turn();
 	}
-	//reset
+
+	// dealer's turn
+
+	// calculate payouts
+
+	// reset
+	reset();
+	//rount();
 }
 
 Card * Table::draw(){
@@ -36,8 +57,8 @@ Card * Table::draw(){
 void Table::deal(){
 	for(int i = 0; i < 2; ++i){
 		for(int p = 0; p < players.size(); ++p){
-			players[p]->add(dealer.deal());
+			players[p]->add(dealer.deal()); // deal a card to each player
 		}
-		dealer.add(dealer.deal());
+		dealer.add(dealer.deal()); // deal a card to the dealer
 	}
 }

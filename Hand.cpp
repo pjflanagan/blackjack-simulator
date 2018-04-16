@@ -4,6 +4,10 @@
 
 Hand::Hand(){};
 
+void Hand::reset(){
+	cards.clear();
+}
+
 void Hand::add(Card * c){
 	cards.push_back(c);
 }
@@ -25,11 +29,22 @@ std::ostream& operator<<(std::ostream& os, const Hand& hand)
 
 // DEALER HAND
 
+DealerHand::DealerHand(){}
+
 Card * DealerHand::get_upcard(){
 	return cards[1]; // second card is the upcard
 }
 
-//dealer to string
-// "Dealer is showing "
 
 // PLAYER HAND
+
+PlayerHand::PlayerHand(){}
+
+void PlayerHand::reset(){
+	Hand::reset();
+	wager = 0;
+}
+
+void PlayerHand::place_bet(int w){
+	wager = w;
+}
