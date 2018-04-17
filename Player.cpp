@@ -20,6 +20,8 @@ void Player::add(Card * c){
 }
 
 void Player::check_beats(Hand * h){
+	int ds = h->sum();
+	ds = (h->has_ace() && ds + 10 < 21) ? ds + 10 : ds;
 	//if player did bust
 	if(hand->is_bust());
 	//if dealer did bust
@@ -29,9 +31,7 @@ void Player::check_beats(Hand * h){
 	else {
 		// calculate who is higher
 		int ps = hand->sum();
-		ps = (hand->has_ace() && ps + 10 > 21) ? ps : ps + 10; 
-		int ds = h->sum();
-		ds = (h->has_ace() && ds + 10 > 21) ? ds : ds + 10;
+		ps = (hand->has_ace() && ps + 10 < 21) ? ps + 10 : ps; 
 		if(ps > ds)
 			payout(hand, PAYOUT);
 		else if(ps == ds)
@@ -50,9 +50,7 @@ void Player::check_beats(Hand * h){
 		else {
 			// calculate who is higher
 			int ps = split_hand->sum();
-			ps = (split_hand->has_ace() && ps + 10 > 21) ? ps : ps + 10; 
-			int ds = h->sum();
-			ds = (h->has_ace() && ds + 10 > 21) ? ds : ds + 10;
+			ps = (split_hand->has_ace() && ps + 10 < 21) ? ps + 10 : ps; 
 			if(ps > ds)
 				payout(split_hand, PAYOUT);
 			else if(ps == ds)
@@ -108,8 +106,12 @@ void Player::bust(PlayerHand * h){
 }; 
 
 void Player::payout(PlayerHand * h, double rate){
+	int earnings = rate * h->get_bet();
+
+	std::cout << name << " earns " << earnings << " chips\n";
+
 	// add back to chips
-	chips += rate * h->get_bet();
+	chips += earnings;
 	// reset hand wager to 0 to avoid double payout
 	h->reset();
 }

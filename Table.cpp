@@ -50,6 +50,8 @@ void Table::round(){
 	// dealer's turn
 	dealer.move();
 
+	std::cout << "\n";
+
 	// calculate payouts and print final holdings
 	// kick the player out if they have less than the min bet
 	for(int i = 0; i < players.size(); ++i){
