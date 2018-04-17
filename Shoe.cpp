@@ -42,11 +42,11 @@ class Shoe {
 		return card; // return the card pointer
 	}
 
-	private:
-
 	void reset(){
 		cards.insert(cards.end(), in_play.begin(), in_play.end());
 	}
+
+	private:
 
 	std::vector<Card *> cards;
 	std::vector<Card *> in_play;

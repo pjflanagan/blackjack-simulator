@@ -27,6 +27,10 @@ class Dealer {
 
 	void add(Card * c);
 
+	void move();
+
+	Hand * get_hand();
+
 	private:
 	DealerHand * hand;
 	Table * table;

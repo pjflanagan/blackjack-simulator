@@ -20,7 +20,11 @@ class Player {
 
 	void add(Card * c);
 
-	void print_hand();
+	void check_beats(Hand * hand);
+
+	void print_hand(Hand * h);
+
+	bool is_broke();
 
 	virtual void bet();
 
@@ -31,13 +35,14 @@ class Player {
 	virtual void split();
 
 	bool double_down(); 
-	
+
 	bool hit(PlayerHand * h); 
 	bool check_bust(PlayerHand * h);
 	void bust(PlayerHand * h); // reset hand wager to 0 to avoid double payout
 	void payout(PlayerHand * h, double rate); // reset hand wager to 0 to avoid double payout
 
 
+	std::string name;
 	int chips;
 	bool is_split;
 	PlayerHand * hand;

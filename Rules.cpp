@@ -16,6 +16,8 @@ const int MIN_BET = 10;
 const int MAX_BET = 50;
 const double BLACKJACK_PAYOUT = 3/2;
 const double PAYOUT = 2;
+const double PUSH = 1;
+const double LOSE = 0;
 
 // CARDS
 const int DECKS = 5;
@@ -25,14 +27,8 @@ const std::string FACES[13] = {
 };
 const int VALUES[13] = {1,2,3,4,5,6,7,8,9,10,10,10,10};
 
-// STATES
-const int DEAL = 0;
-const int PLAY = 1;
-const int END = 2;
-
-// RESULTS
-const int WIN = 0;
-const int LOSE = 1;
-const int PUSH = 2;
+// DEALER
+const bool HIT_ON_SOFT_17 = false;
+const int DEALER_STOP = 17;
 
 #endif

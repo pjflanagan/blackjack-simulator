@@ -6,10 +6,19 @@ Hand::Hand(){};
 
 void Hand::reset(){
 	cards.clear();
+	bust = false;
 }
 
 void Hand::add(Card * c){
 	cards.push_back(c);
+}
+
+bool Hand::is_bust(){
+	return bust;
+}
+
+void Hand::set_bust(bool b){
+	bust = b;
 }
 
 std::string Hand::to_string() const {
@@ -24,13 +33,17 @@ std::string Hand::case_type(bool is_first_move){
 	std::string type;
 	int value = 0;
 
-	if(is_first_move && cards[0] == cards[1]){ // pair
+	if(is_first_move && cards[0]->equals(cards[1])){ // pair
 		type = "pair";
 		value = cards[0]->value();
 	}
 	else if(has_ace()){ // ace
 		type = "ace";
 		value = sum()-1;
+		if(value > 9){
+			type = "sum";
+			value += 1;
+		}
 	}
 	else {
 		type = "sum";
@@ -63,16 +76,24 @@ std::ostream& operator<<(std::ostream& os, const Hand& hand)
 
 // DEALER HAND
 
-DealerHand::DealerHand(){}
+DealerHand::DealerHand(){
+	bust = false;
+}
 
 Card * DealerHand::get_upcard(){
 	return cards[1]; // second card is the upcard
 }
 
+Card * DealerHand::get_downcard(){
+	return cards[0];
+}
+
 
 // PLAYER HAND
 
-PlayerHand::PlayerHand(){}
+PlayerHand::PlayerHand(){
+	bust = false;
+}
 
 void PlayerHand::reset(){
 	Hand::reset();

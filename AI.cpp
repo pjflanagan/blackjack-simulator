@@ -17,8 +17,9 @@ class AI : public Player {
 
 	AI(){}
 
-	AI(Table * t) {
+	AI(Table * t, std::string n) {
 		table = t;
+		name = n;
 		Player::Player();
 		cases = Cases();
 	}
@@ -28,15 +29,17 @@ class AI : public Player {
 		std::srand(std::time(NULL));
 		int wager = (std::rand() % static_cast<int>(max-MIN_BET)) + MIN_BET;
 		hand->place_bet(wager);
+		std::cout << name << " wagers " << wager << " of " << chips << " chips\n";
 		chips -= wager;
-		std::cout << "AI wagers " << wager << " chips.\n";
 	}
 
 	void turn() override {
-		std::cout << "AI has ";
+		std::cout << "\n";
 		bool is_first_move = true;
-		while(move(hand, is_first_move)){
-			print_hand();
+		bool end = false;
+		while(!end){
+			print_hand(hand);
+			end = move(hand, is_first_move);
 			is_first_move = false;
 		}
 	}
@@ -50,28 +53,28 @@ class AI : public Player {
 		switch(cases.action(h->case_type(is_first_move), table->upcard()->value())){
 			case SPLIT:
 				if(chips > h->get_bet()){
-					std::cout << "AI chooses to split.\n";
+					std::cout << name << " splits\n";
 					split();
 					return true;
 				}
 				return false;
 			case HIT:
-				std::cout << "AI chooses to hit.\n";
+				std::cout << name << " hits\n";
 				return hit(h); 
 			case STAND:
-				std::cout << "AI chooses to stand.\n";
+				std::cout << name << " stands\n";
 				return true;
 			case DOUBLE:
 				if(is_first_move && chips > h->get_bet()){
-					std::cout << "AI chooses to double down.\n";
+					std::cout << name << " chooses to double down\n";
 					double_down();
 					check_bust(h);
 					return true;
 				}
-				std::cout << "AI chooses to hit.\n";
+				std::cout << name <<  " hits\n";
 				return hit(h); // if not enough money to double down treat it like turn 2
 			case BLACKJACK:
-				std::cout << "AI has blackjack!\n";
+				std::cout << name << " has blackjack!\n";
 				payout(h, BLACKJACK_PAYOUT);
 				return true;
 		}
@@ -80,15 +83,27 @@ class AI : public Player {
 	}
 
 	void split() override {
+		Player::split();
 		// move one card to other hand
+		// and wager chips in
 		split_hand->add(hand->split());
-		// set wager on other hand to same wager
 		split_hand->place_bet(hand->get_bet());
-		// subtract wager from chips
 		chips -= split_hand->get_bet();
 
-		while(move(hand, false)){}
-		while(move(split_hand, false)){}
+		// add card to each hand
+		hand->add(table->draw());
+		split_hand->add(table->draw());
+
+		bool end = false;
+		while(!end){
+			print_hand(hand);
+			end = move(hand, false);
+		}
+		end = false;
+		while(!end){
+			print_hand(split_hand);
+			end = move(split_hand, false);
+		}
 
 	}
 

@@ -21,14 +21,19 @@ class Hand {
 
 	int sum();
 
+	bool is_bust();
+
+	void set_bust(bool b);
+
 	std::string to_string() const;
 
 	std::string case_type(bool is_first_move);
 
+	bool has_ace();
+
 	protected:
 	std::vector<Card *> cards;
-
-	bool has_ace();
+	bool bust;
 
 };
 
@@ -59,6 +64,14 @@ class DealerHand : public Hand {
 	DealerHand();
 
 	Card * get_upcard();
+
+	Card * get_downcard();
+
+	int dealer_sum(){
+		if(has_ace())
+			return sum() + 10;
+		return sum();
+	}
 
 	private:
 	Dealer * dealer;

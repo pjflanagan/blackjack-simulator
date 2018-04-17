@@ -20,20 +20,14 @@ class Card{
 		return face + " of " + suit;
 	}
 
+	bool equals(Card * c) const {
+		return val == c->value();
+	}
+
 	private:
 	std::string face;
 	std::string suit;
 	int val;
 };
-
-bool operator==(const Card& lhs, const Card& rhs){
-	return lhs.value() == rhs.value();
-}
-
-std::ostream& operator<<(std::ostream& os, const Card& card)
-{
-	os << card.to_string();
-    return os;
-}
 
 #endif
