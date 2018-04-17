@@ -56,7 +56,7 @@ void Table::round(){
 	// kick the player out if they have less than the min bet
 	for(int i = 0; i < players.size(); ++i){
 		players[i]->check_beats(dealer.get_hand());
-		if(players[i]->is_broke()){
+		if(players[i]->is_broke()){ // || player[i]->win_big()){
 			players.erase(players.begin() + i);
 			--i;
 		}

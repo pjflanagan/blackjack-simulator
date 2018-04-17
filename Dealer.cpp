@@ -17,7 +17,7 @@ void Dealer::shuffle() {
 
 void Dealer::burn(){
 	deal();
-	std::cout << "Dealer burns.\n";
+	std::cout << "Dealer burns\n";
 }
 
 Card * Dealer::deal(){

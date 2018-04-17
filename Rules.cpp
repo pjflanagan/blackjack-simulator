@@ -20,7 +20,7 @@ const double PUSH = 1;
 const double LOSE = 0;
 
 // CARDS
-const int DECKS = 5;
+const int DECKS = 1;
 const std::string SUITS[4] = {"Spades", "Hearts", "Clubs", "Diamonds"};
 const std::string FACES[13] = {
 	"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"
