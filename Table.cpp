@@ -8,8 +8,8 @@ Table::Table(){
 	shoe = Shoe();
 	shoe.shuffle();
 	dealer = Dealer(this);
-	players.push_back(new AI());
-	players.push_back(new AI());
+	players.push_back(new AI(this));
+	players.push_back(new AI(this));
 }
 
 void Table::reset(){
@@ -24,6 +24,10 @@ void Table::shuffle(){
 void Table::play(){
 	dealer.shuffle(); // initially shuffle the deck
 	round();
+}
+
+Card * Table::upcard(){
+	return dealer.get_upcard();
 }
 
 void Table::round(){

@@ -14,7 +14,7 @@ const char BUST = 'X';
 // CHIPS
 const int MIN_BET = 10;
 const int MAX_BET = 50;
-const double BJ_PAYOUT = 3/2;
+const double BLACKJACK_PAYOUT = 3/2;
 const double PAYOUT = 2;
 
 // CARDS

@@ -19,10 +19,16 @@ class Hand {
 
 	void add(Card * c);
 
+	int sum();
+
 	std::string to_string() const;
+
+	std::string case_type(bool is_first_move);
 
 	protected:
 	std::vector<Card *> cards;
+
+	bool has_ace();
 
 };
 
@@ -35,8 +41,11 @@ class PlayerHand : public Hand {
 
 	void place_bet(int w);
 
-	//dealer to string
-	// "Dealer is showing "
+	int get_bet();
+
+	Card * split();
+
+	void double_down();
 
 	private:
 	int wager;

@@ -6,6 +6,7 @@
 
 class PlayerHand;
 class Table;
+class Hand;
 
 #include "Hand.h"
 #include "Table.h"
@@ -26,7 +27,16 @@ class Player {
 	virtual void turn();
 
 	protected:
-	virtual bool move(int m);
+	virtual bool move(PlayerHand * h, bool is_first_move);
+	virtual void split();
+
+	bool double_down(); 
+	
+	bool hit(PlayerHand * h); 
+	bool check_bust(PlayerHand * h);
+	void bust(PlayerHand * h); // reset hand wager to 0 to avoid double payout
+	void payout(PlayerHand * h, double rate); // reset hand wager to 0 to avoid double payout
+
 
 	int chips;
 	bool is_split;

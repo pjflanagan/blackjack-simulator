@@ -24,6 +24,8 @@ class Table {
 	// draws a card
 	Card * draw();
 
+	Card * upcard();
+
 	private:
 
 	// goes around the table and plays each turn
