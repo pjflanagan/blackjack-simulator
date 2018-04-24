@@ -61,6 +61,11 @@ void Player::check_beats(Hand * h){
 	}
 }
 
+std::string Player::summary(int round){
+	std::string s = name + " ends with " + std::to_string(chips) + " chips in round " + std::to_string(round) + ".\n";
+	return s;
+}
+
 
 // CHANGE FOR HUMAN TO HAVE THE OPTION AND THE COMPUTER TO THIS
 bool Player::is_done(){

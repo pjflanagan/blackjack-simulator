@@ -26,6 +26,8 @@ class Table {
 
 	Card * upcard();
 
+	void summary();
+
 	private:
 
 	// goes around the table and plays each turn
@@ -38,6 +40,7 @@ class Table {
 	std::vector<Player *> players;
 	Dealer dealer;
 	int round_count;
+	std::vector<std::string> player_summary;
 
 };
 

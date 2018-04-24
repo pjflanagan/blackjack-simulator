@@ -14,5 +14,6 @@
 int main(int argc, char *argv[]){
 	Table table = Table();
 	table.play();
+	table.summary();
 	return 0;
 }

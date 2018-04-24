@@ -30,6 +30,8 @@ class Player {
 
 	virtual void turn();
 
+	std::string summary(int round);
+
 	protected:
 	virtual bool move(HandPlayer * h, bool is_first_move);
 	void split();

@@ -10,7 +10,7 @@ Table::Table(){
 	dealer = Dealer(this);
 	players.push_back(new PlayerAI(this, "Danny Ocean"));
 	players.push_back(new PlayerAI(this, "Terry Benedict"));
-	players.push_back(new PlayerHuman(this, "Rain Man"));
+	//players.push_back(new PlayerHuman(this, "Rain Man"));
 	round_count = 0;
 }
 
@@ -20,6 +20,12 @@ void Table::reset(){
 	for(int i = 0; i < players.size(); ++i){
 		players[i]->reset();
 	}
+}
+
+void Table::summary(){
+	std::cout << "\n\n==== Summary ====\n";
+	for(int i = 0; i < player_summary.size(); ++i)
+		std::cout << player_summary[i];
 }
 
 void Table::shuffle(){
@@ -58,7 +64,8 @@ void Table::round(){
 	// kick the player out if they have less than the min bet
 	for(int i = 0; i < players.size(); ++i){
 		players[i]->check_beats(dealer.get_hand());
-		if(players[i]->is_done()){ // || player[i]->win_big()){
+		if(players[i]->is_done()){ 
+			player_summary.push_back(players[i]->summary(round_count));
 			players.erase(players.begin() + i);
 			--i;
 		}

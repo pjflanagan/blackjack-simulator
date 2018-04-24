@@ -25,9 +25,15 @@ class PlayerAI : public Player {
 	}
 
 	void bet() override {
-		int max = (MAX_BET > chips) ? chips : MAX_BET;
-		std::srand(std::time(NULL));
-		int wager = (std::rand() % static_cast<int>(max-MIN_BET)) + MIN_BET;
+		int wager;
+		if(chips == MIN_BET){
+			wager = MIN_BET;
+		}
+		else {
+			int max = (MAX_BET > chips) ? chips : MAX_BET;
+			std::srand(std::time(NULL));
+			wager = (std::rand() % static_cast<int>(max-MIN_BET)) + MIN_BET;
+		}
 		hand->place_bet(wager);
 		std::cout << name << " wagers " << wager << " of " << chips << " chips\n";
 		chips -= wager;

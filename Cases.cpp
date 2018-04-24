@@ -26,6 +26,7 @@ class Cases {
 		cases["sum19"] = {'S','S','S','S','S','S','S','S','S','S'};
 		cases["sum20"] = {'S','S','S','S','S','S','S','S','S','S'};
 		cases["sum21"] = {'S','S','S','S','S','S','S','S','S','S'};
+		cases["ace1"] = {'H','H','H','S','S','S','H','H','H','H'}; // different than pair of aces bc on second turn, same as sum12
 		cases["ace2"] = {'H','H','H','H','D','D','H','H','H','H'};
 		cases["ace3"] = {'H','H','H','H','D','D','H','H','H','H'};
 		cases["ace4"] = {'H','H','H','D','D','D','H','H','H','H'};
