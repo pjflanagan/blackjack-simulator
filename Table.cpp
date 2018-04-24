@@ -1,15 +1,17 @@
 
 #include "Table.h"
 #include "Dealer.h"
-#include "AI.cpp"
-#include "Human.cpp"
+#include "PlayerAI.cpp"
+#include "PlayerHuman.cpp"
 
 Table::Table(){
 	shoe = Shoe();
 	shoe.shuffle();
 	dealer = Dealer(this);
-	players.push_back(new AI(this, "Danny Ocean"));
-	players.push_back(new AI(this, "Terry Benedict"));
+	players.push_back(new PlayerAI(this, "Danny Ocean"));
+	players.push_back(new PlayerAI(this, "Terry Benedict"));
+	players.push_back(new PlayerHuman(this, "Rain Man"));
+	round_count = 0;
 }
 
 void Table::reset(){
@@ -34,7 +36,7 @@ Card * Table::upcard(){
 }
 
 void Table::round(){
-	std::cout << "\n\n ==== Round ==== \n";
+	std::cout << "\n\n ==== Round " << ++round_count << " ==== \n";
 	for(int i = 0; i < players.size(); ++i){
 		players[i]->bet();
 	}
@@ -56,7 +58,7 @@ void Table::round(){
 	// kick the player out if they have less than the min bet
 	for(int i = 0; i < players.size(); ++i){
 		players[i]->check_beats(dealer.get_hand());
-		if(players[i]->is_broke()){ // || player[i]->win_big()){
+		if(players[i]->is_done()){ // || player[i]->win_big()){
 			players.erase(players.begin() + i);
 			--i;
 		}

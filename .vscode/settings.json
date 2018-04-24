@@ -1,31 +1,5 @@
 {
 	"files.associations": {
-		"__split_buffer": "cpp",
-		"array": "cpp",
-		"deque": "cpp",
-		"queue": "cpp",
-		"string": "cpp",
-		"string_view": "cpp",
-		"vector": "cpp",
-		"memory": "cpp",
-		"__bit_reference": "cpp",
-		"__tree": "cpp",
-		"initializer_list": "cpp",
-		"ios": "cpp",
-		"iterator": "cpp",
-		"map": "cpp",
-		"bitset": "cpp",
-		"random": "cpp",
-		"utility": "cpp",
-		"algorithm": "cpp",
-		"__string": "cpp",
-		"type_traits": "cpp",
-		"__config": "cpp",
-		"__nullptr": "cpp",
-		"exception": "cpp",
-		"new": "cpp",
-		"stdexcept": "cpp",
-		"typeinfo": "cpp",
 		"__locale": "cpp"
 	}
 }

@@ -38,9 +38,9 @@ class Hand {
 };
 
 // Player Hand extends hand
-class PlayerHand : public Hand {
+class HandPlayer : public Hand {
 	public:
-	PlayerHand();
+	HandPlayer();
 
 	void reset();
 
@@ -59,9 +59,9 @@ class PlayerHand : public Hand {
 };
 
 // Dealer Hand extends hand
-class DealerHand : public Hand {
+class HandDealer : public Hand {
 	public:
-	DealerHand();
+	HandDealer();
 
 	Card * get_upcard();
 

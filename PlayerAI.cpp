@@ -12,12 +12,12 @@
 #include "Cases.cpp"
 #include "Table.h"
 
-class AI : public Player {
+class PlayerAI : public Player {
 	public:
 
-	AI(){}
+	PlayerAI(){}
 
-	AI(Table * t, std::string n) {
+	PlayerAI(Table * t, std::string n) {
 		table = t;
 		name = n;
 		Player::Player();
@@ -25,10 +25,9 @@ class AI : public Player {
 	}
 
 	void bet() override {
-		//int max = (MAX_BET > chips) ? chips : MAX_BET;
-		//std::srand(std::time(NULL));
-		//int wager = (std::rand() % static_cast<int>(max-MIN_BET)) + MIN_BET;
-		int wager = 10;
+		int max = (MAX_BET > chips) ? chips : MAX_BET;
+		std::srand(std::time(NULL));
+		int wager = (std::rand() % static_cast<int>(max-MIN_BET)) + MIN_BET;
 		hand->place_bet(wager);
 		std::cout << name << " wagers " << wager << " of " << chips << " chips\n";
 		chips -= wager;
@@ -48,7 +47,7 @@ class AI : public Player {
 	protected:
 
 	// returns false if turn is over
-	bool move(PlayerHand * h, bool is_first_move) override {
+	bool move(HandPlayer * h, bool is_first_move) override {
 		// if it's the first move consider pair splits
 		// and doubling down
 		switch(cases.action(h->case_type(is_first_move), table->upcard()->value())){
@@ -83,30 +82,6 @@ class AI : public Player {
 		return false;
 	}
 
-	void split() override {
-		Player::split();
-		// move one card to other hand
-		// and wager chips in
-		split_hand->add(hand->split());
-		split_hand->place_bet(hand->get_bet());
-		chips -= split_hand->get_bet();
-
-		// add card to each hand
-		hand->add(table->draw());
-		split_hand->add(table->draw());
-
-		bool end = false;
-		while(!end){
-			print_hand(hand);
-			end = move(hand, false);
-		}
-		end = false;
-		while(!end){
-			print_hand(split_hand);
-			end = move(split_hand, false);
-		}
-
-	}
 
 	private:
 	Cases cases;

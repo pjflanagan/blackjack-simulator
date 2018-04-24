@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-class PlayerHand;
+class HandPlayer;
 class Table;
 class Hand;
 
@@ -24,29 +24,29 @@ class Player {
 
 	void print_hand(Hand * h);
 
-	bool is_broke();
+	bool is_done();
 
 	virtual void bet();
 
 	virtual void turn();
 
 	protected:
-	virtual bool move(PlayerHand * h, bool is_first_move);
-	virtual void split();
+	virtual bool move(HandPlayer * h, bool is_first_move);
+	void split();
 
 	bool double_down(); 
 
-	bool hit(PlayerHand * h); 
-	bool check_bust(PlayerHand * h);
-	void bust(PlayerHand * h); // reset hand wager to 0 to avoid double payout
-	void payout(PlayerHand * h, double rate); // reset hand wager to 0 to avoid double payout
+	bool hit(HandPlayer * h); 
+	bool check_bust(HandPlayer * h);
+	void bust(HandPlayer * h); // reset hand wager to 0 to avoid double payout
+	void payout(HandPlayer * h, double rate); // reset hand wager to 0 to avoid double payout
 
 
 	std::string name;
 	int chips;
 	bool is_split;
-	PlayerHand * hand;
-	PlayerHand * split_hand;
+	HandPlayer * hand;
+	HandPlayer * split_hand;
 	Table * table;
 
 };

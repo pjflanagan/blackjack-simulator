@@ -4,7 +4,7 @@
 Dealer::Dealer(){}
 
 Dealer::Dealer(Table * t) : table(t) {
-	hand = new DealerHand();
+	hand = new HandDealer();
 }
 
 void Dealer::reset(){
@@ -43,6 +43,7 @@ void Dealer::move(){
 		if(hand->sum() > 21){
 			// if the dealer busts
 			std::cout << "Dealer busts!\n";
+			hand->set_bust(true);
 			end = true;
 		}
 		else {

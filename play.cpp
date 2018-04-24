@@ -5,8 +5,8 @@
 #include "Player.cpp"
 #include "Dealer.cpp"
 #include "Hand.cpp"
-#include "AI.cpp"
-#include "Human.cpp"
+#include "PlayerAI.cpp"
+#include "PlayerHuman.cpp"
 
 // -----------------------------------------------------------------------------
 // MAIN

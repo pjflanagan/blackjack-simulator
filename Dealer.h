@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-class DealerHand;
+class HandDealer;
 class Table;
 
 #include "Hand.h"
@@ -32,7 +32,7 @@ class Dealer {
 	Hand * get_hand();
 
 	private:
-	DealerHand * hand;
+	HandDealer * hand;
 	Table * table;
 };
 

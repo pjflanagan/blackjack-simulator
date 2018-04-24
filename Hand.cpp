@@ -76,43 +76,43 @@ std::ostream& operator<<(std::ostream& os, const Hand& hand)
 
 // DEALER HAND
 
-DealerHand::DealerHand(){
+HandDealer::HandDealer(){
 	bust = false;
 }
 
-Card * DealerHand::get_upcard(){
+Card * HandDealer::get_upcard(){
 	return cards[1]; // second card is the upcard
 }
 
-Card * DealerHand::get_downcard(){
+Card * HandDealer::get_downcard(){
 	return cards[0];
 }
 
 
 // PLAYER HAND
 
-PlayerHand::PlayerHand(){
+HandPlayer::HandPlayer(){
 	bust = false;
 }
 
-void PlayerHand::reset(){
+void HandPlayer::reset(){
 	Hand::reset();
 	wager = 0;
 }
 
-void PlayerHand::place_bet(int w){
+void HandPlayer::place_bet(int w){
 	wager = w;
 }
 
-void PlayerHand::double_down(){
+void HandPlayer::double_down(){
 	wager *= 2;
 }
 
-int PlayerHand::get_bet(){
+int HandPlayer::get_bet(){
 	return wager;
 }
 
-Card * PlayerHand::split(){
+Card * HandPlayer::split(){
 	// store the second card
 	Card * c = cards.back();
 	// remove the second card

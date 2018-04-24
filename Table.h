@@ -37,6 +37,7 @@ class Table {
 	Shoe shoe;
 	std::vector<Player *> players;
 	Dealer dealer;
+	int round_count;
 
 };
 

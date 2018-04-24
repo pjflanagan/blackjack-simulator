@@ -2,8 +2,8 @@
 #include "Player.h"
 
 Player::Player(){
-	hand = new PlayerHand();
-	split_hand = new PlayerHand();
+	hand = new HandPlayer();
+	split_hand = new HandPlayer();
 	is_split = false;
 	chips = 100;
 }
@@ -61,8 +61,18 @@ void Player::check_beats(Hand * h){
 	}
 }
 
-bool Player::is_broke(){
-	return chips < MIN_BET;
+
+// CHANGE FOR HUMAN TO HAVE THE OPTION AND THE COMPUTER TO THIS
+bool Player::is_done(){
+	if(chips < MIN_BET){
+		std::cout << name << " is broke.\n";
+		return true;
+	}
+	if (chips > CASHOUT){
+		std::cout << name << " cashes out.\n";
+		return true;
+	}
+	return false;
 }
 
 void Player::bet(){}
@@ -73,7 +83,7 @@ void Player::print_hand(Hand * h){
 	std::cout << name << " has " << h->to_string() << "\n";
 }
 
-bool Player::move(PlayerHand * h, bool is_first_move){ return false; }
+bool Player::move(HandPlayer * h, bool is_first_move){ return false; }
 
 bool Player::double_down(){
 	chips -= hand->get_bet();
@@ -83,16 +93,36 @@ bool Player::double_down(){
 
 void Player::split(){
 	is_split = true;
+	// move one card to other hand
+	// and wager chips in
+	split_hand->add(hand->split());
+	split_hand->place_bet(hand->get_bet());
+	chips -= split_hand->get_bet();
+
+	// add card to each hand
+	hand->add(table->draw());
+	split_hand->add(table->draw());
+
+	bool end = false;
+	while(!end){
+		print_hand(hand);
+		end = move(hand, false);
+	}
+	end = false;
+	while(!end){
+		print_hand(split_hand);
+		end = move(split_hand, false);
+	}
 };
 
-bool Player::hit(PlayerHand * h){
+bool Player::hit(HandPlayer * h){
 	Card * c = table->draw();
 	h->add(c);
 	std::cout << name << " recieves " << c->to_string() << "\n"; //add names to players
 	return check_bust(h); 
 }
 
-bool Player::check_bust(PlayerHand * h){
+bool Player::check_bust(HandPlayer * h){
 	if(h->sum() > 21){
 		bust(h);
 		return true;
@@ -100,12 +130,12 @@ bool Player::check_bust(PlayerHand * h){
 	return false;
 }
 
-void Player::bust(PlayerHand * h){
+void Player::bust(HandPlayer * h){
 	std::cout << name << " busts!\n";
 	h->set_bust(true);
 }; 
 
-void Player::payout(PlayerHand * h, double rate){
+void Player::payout(HandPlayer * h, double rate){
 	int earnings = rate * h->get_bet();
 
 	if(rate == PUSH)
