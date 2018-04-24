@@ -54,7 +54,7 @@ class PlayerHuman : public Player {
 			//if the player has blackjack then let them win
 			if(h->is_blackjack()){
 				std::cout << name << " has blackjack!\n";
-				payout(h, BLACKJACK_PAYOUT);
+				Player::payout(h, BLACKJACK_PAYOUT);
 				return true;
 			}
 		}
