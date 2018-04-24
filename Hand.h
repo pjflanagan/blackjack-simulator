@@ -25,6 +25,8 @@ class Hand {
 
 	void set_bust(bool b);
 
+	bool is_blackjack(); // should be in just HandPlayer 
+
 	std::string to_string() const;
 
 	std::string case_type(bool is_first_move);
@@ -43,6 +45,8 @@ class HandPlayer : public Hand {
 	HandPlayer();
 
 	void reset();
+
+	bool splitable();
 
 	void place_bet(int w);
 

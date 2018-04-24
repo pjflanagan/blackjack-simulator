@@ -29,6 +29,10 @@ std::string Hand::to_string() const {
 	return str; 
 }
 
+bool Hand::is_blackjack(){
+	return has_ace() && sum() == 11;
+}
+
 std::string Hand::case_type(bool is_first_move){
 	std::string type;
 	int value = 0;
@@ -119,4 +123,8 @@ Card * HandPlayer::split(){
 	cards.pop_back();
 	// return the second card
 	return c;
+}
+
+bool HandPlayer::splitable(){
+	return cards[0]->equals(cards[1]);
 }

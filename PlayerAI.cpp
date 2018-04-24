@@ -20,7 +20,7 @@ class PlayerAI : public Player {
 	PlayerAI(Table * t, std::string n) {
 		table = t;
 		name = n;
-		Player::Player();
+		Player::init();
 		cases = Cases();
 	}
 
@@ -72,9 +72,8 @@ class PlayerAI : public Player {
 				return true;
 			case DOUBLE:
 				if(is_first_move && chips > h->get_bet()){
-					std::cout << name << " chooses to double down\n";
+					std::cout << name << " doubles down\n";
 					double_down();
-					check_bust(h);
 					return true;
 				}
 				std::cout << name <<  " hits\n";
@@ -86,6 +85,20 @@ class PlayerAI : public Player {
 		}
 
 		return false;
+	}
+
+	void split(){
+		Player::split();
+		bool end = false;
+		while(!end){
+			print_hand(hand);
+			end = this->move(hand, false);
+		}
+		end = false;
+		while(!end){
+			print_hand(split_hand);
+			end = this->move(split_hand, false);
+		}
 	}
 
 

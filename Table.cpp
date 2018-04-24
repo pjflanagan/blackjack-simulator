@@ -10,7 +10,7 @@ Table::Table(){
 	dealer = Dealer(this);
 	players.push_back(new PlayerAI(this, "Danny Ocean"));
 	players.push_back(new PlayerAI(this, "Terry Benedict"));
-	//players.push_back(new PlayerHuman(this, "Rain Man"));
+	players.push_back(new PlayerHuman(this, "Rain Man"));
 	round_count = 0;
 }
 
@@ -26,6 +26,7 @@ void Table::summary(){
 	std::cout << "\n\n==== Summary ====\n";
 	for(int i = 0; i < player_summary.size(); ++i)
 		std::cout << player_summary[i];
+	std::cout << "\n";
 }
 
 void Table::shuffle(){

@@ -8,6 +8,22 @@
 		"new": "cpp",
 		"stdexcept": "cpp",
 		"typeinfo": "cpp",
-		"algorithm": "cpp"
+		"algorithm": "cpp",
+		"tuple": "cpp",
+		"type_traits": "cpp",
+		"utility": "cpp",
+		"system_error": "cpp",
+		"__bit_reference": "cpp",
+		"__split_buffer": "cpp",
+		"__tree": "cpp",
+		"array": "cpp",
+		"deque": "cpp",
+		"ios": "cpp",
+		"iterator": "cpp",
+		"map": "cpp",
+		"string": "cpp",
+		"string_view": "cpp",
+		"vector": "cpp",
+		"random": "cpp"
 	}
 }

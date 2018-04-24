@@ -1,7 +1,7 @@
 
 #include "Player.h"
 
-Player::Player(){
+void Player::init(){
 	hand = new HandPlayer();
 	split_hand = new HandPlayer();
 	is_split = false;
@@ -62,7 +62,7 @@ void Player::check_beats(Hand * h){
 }
 
 std::string Player::summary(int round){
-	std::string s = name + " ends with " + std::to_string(chips) + " chips in round " + std::to_string(round) + ".\n";
+	std::string s = name + " ends with " + std::to_string(chips) + " chips in round " + std::to_string(round) + "\n";
 	return s;
 }
 
@@ -70,25 +70,19 @@ std::string Player::summary(int round){
 // CHANGE FOR HUMAN TO HAVE THE OPTION AND THE COMPUTER TO THIS
 bool Player::is_done(){
 	if(chips < MIN_BET){
-		std::cout << name << " is broke.\n";
+		std::cout << name << " is broke\n";
 		return true;
 	}
 	if (chips > CASHOUT){
-		std::cout << name << " cashes out.\n";
+		std::cout << name << " cashes out\n";
 		return true;
 	}
 	return false;
 }
 
-void Player::bet(){}
-
-void Player::turn(){}
-
 void Player::print_hand(Hand * h){
 	std::cout << name << " has " << h->to_string() << "\n";
 }
-
-bool Player::move(HandPlayer * h, bool is_first_move){ return false; }
 
 bool Player::double_down(){
 	chips -= hand->get_bet();
@@ -107,17 +101,6 @@ void Player::split(){
 	// add card to each hand
 	hand->add(table->draw());
 	split_hand->add(table->draw());
-
-	bool end = false;
-	while(!end){
-		print_hand(hand);
-		end = move(hand, false);
-	}
-	end = false;
-	while(!end){
-		print_hand(split_hand);
-		end = move(split_hand, false);
-	}
 };
 
 bool Player::hit(HandPlayer * h){
@@ -130,6 +113,10 @@ bool Player::hit(HandPlayer * h){
 bool Player::check_bust(HandPlayer * h){
 	if(h->sum() > 21){
 		bust(h);
+		return true;
+	}
+	if(h->sum() == 21 || (h->has_ace() && h->sum() == 11) ){
+		std::cout << name << " has 21! Winner, winner, chicken dinner!";
 		return true;
 	}
 	return false;
