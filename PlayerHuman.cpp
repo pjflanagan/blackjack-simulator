@@ -109,7 +109,7 @@ class PlayerHuman : public Player {
 			case STAND:
 				return true;
 			case SPLIT:
-				if(is_first_move && chips > h->get_bet() && h->splitable())
+				if(is_first_move && chips >= h->get_bet() && h->splitable())
 					return true;
 				break;
 			case HIT:
@@ -117,7 +117,7 @@ class PlayerHuman : public Player {
 					return true;
 				break;
 			case DOUBLE:
-				if(is_first_move && chips > h->get_bet())
+				if(is_first_move && chips >= h->get_bet())
 					return true;
 				break;
 		}

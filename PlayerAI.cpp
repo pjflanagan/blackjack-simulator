@@ -58,7 +58,7 @@ class PlayerAI : public Player {
 		// and doubling down
 		switch(cases.action(h->case_type(is_first_move), table->upcard()->value())){
 			case SPLIT:
-				if(chips > h->get_bet()){
+				if(chips >= h->get_bet()){
 					std::cout << name << " splits\n";
 					split();
 					return true;
@@ -71,7 +71,7 @@ class PlayerAI : public Player {
 				std::cout << name << " stands\n";
 				return true;
 			case DOUBLE:
-				if(is_first_move && chips > h->get_bet()){
+				if(is_first_move && chips >= h->get_bet()){
 					std::cout << name << " doubles down\n";
 					double_down();
 					return true;
