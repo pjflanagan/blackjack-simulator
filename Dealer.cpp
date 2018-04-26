@@ -38,7 +38,7 @@ Hand * Dealer::get_hand(){
 
 void Dealer::move(){
 	bool end = false;
-	std::cout << "\nDealer reveals " << hand->get_upcard()->to_string() << "\n";
+	std::cout << "\nDealer reveals " << hand->get_downcard()->to_string() << "\n";
 	while(!end){
 		if(hand->sum() > 21){
 			// if the dealer busts

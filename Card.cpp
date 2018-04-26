@@ -12,8 +12,12 @@ class Card{
 		return val == 1;
 	}
 
-	int value() const{
+	int value() const {
 		return val;
+	}
+
+	std::string get_face() const {
+		return face;
 	}
 
 	std::string to_string() const{
@@ -21,7 +25,7 @@ class Card{
 	}
 
 	bool equals(Card * c) const {
-		return val == c->value();
+		return !face.compare(c->get_face());
 	}
 
 	private:

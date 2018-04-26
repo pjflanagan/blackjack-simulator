@@ -4,8 +4,10 @@
 #include <iostream>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <chrono>
 #include <string>
 #include <vector>
+#include <unistd.h>
 
 #include "Player.h"
 #include "Rules.cpp"
@@ -31,7 +33,13 @@ class PlayerAI : public Player {
 		}
 		else {
 			int max = (MAX_BET > chips) ? chips : MAX_BET;
-			std::srand(std::time(NULL));
+			auto now = std::chrono::high_resolution_clock::now(); // get precice time
+			auto now_micro = std::chrono::time_point_cast<std::chrono::microseconds>(now); 
+			auto value = now_micro.time_since_epoch();
+			long duration = value.count(); // convert to a long
+			std::srand(duration); // use as random seed
+			
+			//std::srand(std::time(NULL));
 			wager = (std::rand() % static_cast<int>(max-MIN_BET)) + MIN_BET;
 		}
 		hand->place_bet(wager);

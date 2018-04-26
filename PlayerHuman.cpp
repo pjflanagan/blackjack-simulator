@@ -53,7 +53,7 @@ class PlayerHuman : public Player {
 		if(is_first_move){
 			//if the player has blackjack then let them win
 			if(h->is_blackjack()){
-				std::cout << name << " has blackjack!\n";
+				std::cout << name << " has blackjack! Winner, winner, chicken dinner!\n";
 				Player::payout(h, BLACKJACK_PAYOUT);
 				return true;
 			}

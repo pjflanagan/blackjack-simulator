@@ -116,7 +116,7 @@ bool Player::check_bust(HandPlayer * h){
 		return true;
 	}
 	if(h->sum() == 21 || (h->has_ace() && h->sum() == 11) ){
-		std::cout << name << " has 21! Winner, winner, chicken dinner!\n";
+		std::cout << name << " has 21!\n";
 		return true;
 	}
 	return false;
@@ -136,7 +136,7 @@ void Player::payout(HandPlayer * h, double rate){
 		else if(rate == LOSE)
 			std::cout << name << " loses " << h->get_bet() << " chips\n";
 		else
-			std::cout << name << " earns " << earnings/2 << " chips\n";
+			std::cout << name << " earns " << earnings/(rate) << " chips\n";
 	}
 
 	// add back to chips
