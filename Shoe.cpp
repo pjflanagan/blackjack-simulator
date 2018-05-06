@@ -23,6 +23,7 @@ class Shoe {
 				cards.push_back(deck.at(card));
 			}
 		}
+		std::cout << cards.size() << " cards in the shoe.\n";
 		// shuffle the deck
 		shuffle();
 	}
@@ -43,7 +44,8 @@ class Shoe {
 	}
 
 	void reset(){
-		cards.insert(cards.end(), in_play.begin(), in_play.end());
+		cards.insert(cards.end(), in_play.begin(), in_play.end()); // insert all the cards in play back into the deck
+		in_play.clear(); // clear the cards that are in play for the array to be used again
 	}
 
 	private:

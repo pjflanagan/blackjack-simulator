@@ -1,18 +1,17 @@
-To add:
+```
+make; make run
+```
 
-Human player
-Card Counter Player //rainman
-Random Player and result recorder
 
 To do:
 
-Reformat code to have better file class and function names
+The shoe or deck might not be working properly
 
-- PlayerCardCounter
-- PlayerLearner
+Make new players:
+- PlayerHuman // enters own name
+- PlayerCardCounter // Card Counter Player //rainman
+- PlayerLearner // Random Player and result recorder
 
 make everything in RULES static
-
-make an out folder
 
 make a source folder and move (card deck and shoe) into another one
