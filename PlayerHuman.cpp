@@ -24,7 +24,7 @@ class PlayerHuman : public Player {
 		std::cout << name << " has " << chips << " chips to wager\n";
 		int wager = 0;
 		while(!valid_bet(wager)){
-			std::cout << "Place bet: "; //[0 to quit]: ";
+			std::cout << "Place bet [" << MIN_BET << "-" << MAX_BET << "]: "; //[0 to quit]: ";
 			std::cin >> wager;
 			//if(wager == 0){
 			//	std::cout << name << " has left the table";

@@ -122,7 +122,7 @@ void Player::payout(HandPlayer * h, double rate){
 		else if(rate == LOSE)
 			std::cout << name << " loses " << h->get_bet() << " chips\n";
 		else
-			std::cout << name << " earns " << earnings/(rate) << " chips\n";
+			std::cout << name << " earns " << earnings - h->get_bet() << " chips\n";
 	}
 
 	// add back to chips
