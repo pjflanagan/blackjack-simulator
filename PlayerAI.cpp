@@ -58,6 +58,18 @@ class PlayerAI : public Player {
 		}
 	}
 
+	bool is_done() override {
+		if(chips < MIN_BET){
+			std::cout << name << " is broke\n";
+			return true;
+		}
+		if (chips > AI_CASHOUT){
+			std::cout << name << " cashes out\n";
+			return true;
+		}
+		return false;
+	}
+
 	protected:
 
 	// returns false if turn is over

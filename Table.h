@@ -14,33 +14,28 @@ class Table {
 	Table();
 
 	void reset();
-
 	// starts the game
 	void play();
-
 	// shuffles the shoe
 	void shuffle();
-
 	// draws a card
-	Card * draw();
-
+	Card * draw(bool is_burn);
 	Card * upcard();
-
 	void summary();
+	int get_count();
 
 	private:
-
 	// goes around the table and plays each turn
 	void round();
-
 	// dealing portion of the round
 	void deal();
-
 	Shoe shoe;
 	std::vector<Player *> players;
 	Dealer dealer;
 	int round_count;
+	int card_count;
 	std::vector<std::string> player_summary;
+	Player * counter;
 
 };
 

@@ -21,7 +21,7 @@ class Dealer {
 	// burns a card
 	void burn();
 
-	Card * deal();
+	Card * deal(bool is_burn);
 
 	Card * get_upcard();
 

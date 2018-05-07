@@ -18,7 +18,7 @@ class Player {
 	void add(Card * c);
 	void check_beats(Hand * hand);
 	void print_hand(Hand * h);
-	bool is_done();
+	virtual bool is_done() = 0;
 	virtual void bet() = 0;
 	virtual void turn() = 0;
 	std::string summary(int round);

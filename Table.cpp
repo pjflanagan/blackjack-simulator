@@ -3,19 +3,19 @@
 #include "Dealer.h"
 #include "PlayerAI.cpp"
 #include "PlayerHuman.cpp"
+#include "PlayerCardCounter.cpp"
 
 Table::Table(){
 	shoe = Shoe();
-	shoe.shuffle();
 	dealer = Dealer(this);
-	players.push_back(new PlayerAI(this, "Danny Ocean"));
 	players.push_back(new PlayerAI(this, "Terry Benedict"));
-	players.push_back(new PlayerHuman(this, "Rain Man"));
+	counter = new PlayerCardCounter(this, "Rain Man");
+	players.push_back(counter);
+	//players.push_back(new PlayerHuman(this, "Danny Ocean"));
 	round_count = 0;
 }
 
 void Table::reset(){
-	shoe.reset();
 	dealer.reset();
 	for(int i = 0; i < players.size(); ++i){
 		players[i]->reset();
@@ -30,8 +30,7 @@ void Table::summary(){
 }
 
 void Table::shuffle(){
-	std::cout << "Dealer shuffles\n";
-	shoe.shuffle();
+	shoe.shuffle(false);
 }
 
 void Table::play(){
@@ -76,12 +75,16 @@ void Table::round(){
 		return;
 
 	// reset and start another round
-	reset();
+	reset(); 
 	round();
 }
 
-Card * Table::draw(){
-	return shoe.draw();
+Card * Table::draw(bool is_burn){
+	return shoe.draw(is_burn);
+}
+
+int Table::get_count(){
+	return shoe.get_count();
 }
 
 void Table::deal(){
@@ -90,8 +93,8 @@ void Table::deal(){
 	dealer.burn();
 	for(int i = 0; i < 2; ++i){
 		for(int p = 0; p < players.size(); ++p){
-			players[p]->add(dealer.deal()); // deal a card to each player
+			players[p]->add(dealer.deal(false)); // deal a card to each player
 		}
-		dealer.add(dealer.deal()); // deal a card to the dealer
+		dealer.add(dealer.deal(false)); // deal a card to the dealer
 	}
 }

@@ -9,7 +9,7 @@ The shoe or deck might not be working properly
 
 Make new players:
 - PlayerHuman // enters own name
-- PlayerCardCounter // Card Counter Player //rainman
+- PlayerCardCounter // extend from PlayerAI //rainman
 - PlayerLearner // Random Player and result recorder
 
 make everything in RULES static

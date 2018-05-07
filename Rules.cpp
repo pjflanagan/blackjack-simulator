@@ -14,7 +14,10 @@ const char BUST = 'X';
 // CHIPS
 const int MIN_BET = 10;
 const int MAX_BET = 50;
-const int CASHOUT = 250;
+const int AI_CASHOUT = 250;
+const int START_CHIPS = 100;
+const int COUNTER_START_CHIPS = 1000;
+const int COUNTER_CASHOUT = 2500;
 //const double BLACKJACK_PAYOUT = 1.2; // DO NOT PLAY
 const double BLACKJACK_PAYOUT = 1.5;
 //const double BLACKJACK_PAYOUT = 2; // DOES NOT HAPPEN
@@ -23,7 +26,7 @@ const double PUSH = 1;
 const double LOSE = 0;
 
 // CARDS
-const int DECKS = 1;
+const int DECKS = 5;
 const std::string SUITS[4] = {"Spades", "Hearts", "Clubs", "Diamonds"};
 const std::string FACES[13] = {
 	"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"

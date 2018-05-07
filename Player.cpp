@@ -66,20 +66,6 @@ std::string Player::summary(int round){
 	return s;
 }
 
-
-// CHANGE FOR HUMAN TO HAVE THE OPTION AND THE COMPUTER TO THIS
-bool Player::is_done(){
-	if(chips < MIN_BET){
-		std::cout << name << " is broke\n";
-		return true;
-	}
-	if (chips > CASHOUT){
-		std::cout << name << " cashes out\n";
-		return true;
-	}
-	return false;
-}
-
 void Player::print_hand(Hand * h){
 	std::cout << name << " has " << h->to_string() << "\n";
 }
@@ -99,12 +85,12 @@ void Player::split(){
 	chips -= split_hand->get_bet();
 
 	// add card to each hand
-	hand->add(table->draw());
-	split_hand->add(table->draw());
+	hand->add(table->draw(false));
+	split_hand->add(table->draw(false));
 };
 
 bool Player::hit(HandPlayer * h){
-	Card * c = table->draw();
+	Card * c = table->draw(false);
 	h->add(c);
 	std::cout << name << " recieves " << c->to_string() << "\n"; //add names to players
 	return check_bust(h); 

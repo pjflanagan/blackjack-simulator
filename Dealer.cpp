@@ -16,12 +16,12 @@ void Dealer::shuffle() {
 }
 
 void Dealer::burn(){
-	deal();
+	deal(true);
 	std::cout << "Dealer burns\n";
 }
 
-Card * Dealer::deal(){
-	return table->draw();
+Card * Dealer::deal(bool is_burn){
+	return table->draw(is_burn);
 }
 
 void Dealer::add(Card * c){
@@ -62,7 +62,7 @@ void Dealer::move(){
 			}
 			else {
 				std::cout << "Dealer hits\n";
-				Card * c = deal();
+				Card * c = deal(false);
 				std::cout << "Dealer recieves " << c->to_string() << "\n";
 				hand->add(c);
 			}
