@@ -19,30 +19,27 @@ class PlayerCardCounter : public PlayerAI {
 		table = t;
 		name = n;
 		Player::init();
-		chips = 1000;
 	};
 
 	// just overwrite bet to bet min every time until count is high enough
 	void bet() override {
 		int true_count = table->get_count();
-
-		if(true_count > 0)
-			std::cout << "The count is +" << true_count << "\n";
-		else
-			std::cout << "The count is " << true_count << "\n";
-
 		int betting_unit = chips / 10; // should be 1/1000 of total bankroll but we will do less
 		int wager = (true_count - 1) * betting_unit;
-
-		// 100
 
 		if(wager > chips) wager = chips;
 
 		if(wager < MIN_BET) wager = MIN_BET;
 		else if(wager > MAX_BET) wager = MAX_BET;
 
-		std::cout << name << " wagers " << wager << " of " << chips << " chips\n";
+		//int wager = (true_count > 8) ? MAX_BET : MIN_BET;
 
+		hand->place_bet(wager);
+		std::cout << name << " wagers " << wager << " of " << chips << " chips on a count of ";
+		if(true_count > 0)
+			std::cout << "+" << true_count << "\n";
+		else
+			std::cout << true_count << "\n";
 		chips -= wager;
 	}
 

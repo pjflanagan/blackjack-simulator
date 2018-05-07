@@ -9,9 +9,9 @@ Table::Table(){
 	shoe = Shoe();
 	dealer = Dealer(this);
 	players.push_back(new PlayerAI(this, "Terry Benedict"));
+	//players.push_back(new PlayerHuman(this, "Danny Ocean"));
 	counter = new PlayerCardCounter(this, "Rain Man");
 	players.push_back(counter);
-	//players.push_back(new PlayerHuman(this, "Danny Ocean"));
 	round_count = 0;
 }
 

@@ -7,10 +7,9 @@ To do:
 
 The shoe or deck might not be working properly
 
-Make new players:
+Player add and edit:
 - PlayerHuman // enters own name
-- PlayerCardCounter // extend from PlayerAI //rainman
-- PlayerLearner // Random Player and result recorder
+- PlayerLearner // Plays randomly and records the results
 
 make everything in RULES static
 
