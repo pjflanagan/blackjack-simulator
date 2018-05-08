@@ -24,4 +24,9 @@ Player add and edit:
 - Dealer should only burn a card ONCE after resetting the deck, and not before each deal
 - PlayerHuman // enters own name
 - PlayerLearner // Plays randomly and records the results
-- make everything in RULES static
+- Getopt
+
+```
+make play
+make simulation
+```

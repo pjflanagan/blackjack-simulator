@@ -46,10 +46,15 @@ class PlayerHuman : public Player {
 	}
 
 	bool is_done() override {
-		std::cout << "\nContinue [Y/N]: ";
-		char response;
-		std::cin >> response;
-		return response != 'Y';
+		char response = '!';
+		while(response == '!'){
+			std::cout << "\nContinue [Y/N]: ";
+			std::cin >> response;
+			if(response != 'Y')
+				if(response != 'N')
+					response = '!';
+		}
+		return response == 'N'; //player is done if they reply No
 	}
 
 	protected:
