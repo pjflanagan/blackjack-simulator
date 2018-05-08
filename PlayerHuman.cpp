@@ -67,7 +67,10 @@ class PlayerHuman : public Player {
 		}
 		//otherwise ask for input
 		while(!valid_move(m, h, is_first_move)){
-			std::cout << "Make move [Stand, Hit, Double, sPlit]: ";
+			if(is_first_move) // could also determine if Double and sPlit are available
+				std::cout << "Make move [Stand, Hit, Double, sPlit]: ";
+			else
+				std::cout << "Make move [Stand, Hit]: ";
 			std::cin >> m;
 		}
 
