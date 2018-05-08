@@ -25,4 +25,3 @@ Player add and edit:
 - PlayerHuman // enters own name
 - PlayerLearner // Plays randomly and records the results
 - make everything in RULES static
-- make a source folder and move (card deck and shoe) into another one
