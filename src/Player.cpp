@@ -114,19 +114,20 @@ void Player::bust(HandPlayer * h){
 }; 
 
 void Player::payout(HandPlayer * h, double rate){
-	int earnings = rate * h->get_bet();
+	int bet = h->get_bet();
+	int earnings = rate * bet;
 
-	if(h->get_bet() != 0){
+	if(bet != 0){
 		if(rate == PUSH)
 			std::cout << name << " breaks even\n";
 		else if(rate == LOSE)
-			std::cout << name << " loses " << h->get_bet() << " chips\n";
+			std::cout << name << " loses " << bet << " chips\n";
 		else
-			std::cout << name << " earns " << earnings - h->get_bet() << " chips\n";
+			std::cout << name << " earns " << earnings << " chips\n";
 	}
 
-	// add back to chips
-	chips += earnings;
+	// add bet and earning back to chips
+	chips += earnings + bet;
 	// reset hand wager to 0 to avoid double payout
 	h->reset();
 }

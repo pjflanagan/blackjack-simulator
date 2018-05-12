@@ -8,9 +8,8 @@
 Table::Table(){
 	dealer = Dealer(this);
 	players.push_back(new PlayerAI(this, "Terry Benedict"));
+	players.push_back(new PlayerCardCounter(this, "Rain Man"));
 	players.push_back(new PlayerHuman(this, "Danny Ocean"));
-	counter = new PlayerCardCounter(this, "Rain Man");
-	players.push_back(counter);
 	round_count = 0;
 }
 
@@ -88,7 +87,7 @@ int Table::get_count(){
 
 void Table::deal(){
 	std::cout << "\n";
-	dealer.shuffle(); // initially shuffle the deck
+	dealer.shuffle(); // shuffle (only does it if it has to)
 	dealer.burn();
 	for(int i = 0; i < 2; ++i){
 		for(int p = 0; p < players.size(); ++p){

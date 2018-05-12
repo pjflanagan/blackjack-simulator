@@ -17,3 +17,6 @@ int main(int argc, char *argv[]){
 	table.summary();
 	return 0;
 }
+
+
+// GETOPT
