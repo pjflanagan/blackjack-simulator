@@ -105,12 +105,14 @@ class PlayerHuman : public Player {
 
 	void split(){
 		Player::split();
-		bool end = false;
+		bool end = hand->has_ace(); // if the split was aces then only hit once
+		hand->add(table->draw(false));
 		while(!end){
 			print_hand(hand);
 			end = this->move(hand, false);
 		}
-		end = false;
+		end = split_hand->has_ace();
+		split_hand->add(table->draw(false));
 		while(!end){
 			print_hand(split_hand);
 			end = this->move(split_hand, false);

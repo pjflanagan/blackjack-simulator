@@ -83,10 +83,6 @@ void Player::split(){
 	split_hand->add(hand->split());
 	split_hand->place_bet(hand->get_bet());
 	chips -= split_hand->get_bet();
-
-	// add card to each hand
-	hand->add(table->draw(false));
-	split_hand->add(table->draw(false));
 };
 
 bool Player::hit(HandPlayer * h){

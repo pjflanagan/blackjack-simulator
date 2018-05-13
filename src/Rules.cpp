@@ -33,11 +33,12 @@ static const int VALUES[13] = {1,2,3,4,5,6,7,8,9,10,10,10,10};
 // --- DEALER ---
 static const int DEALER_STOP = 17;
 //static const bool HIT_ON_SOFT_17 = false;
+//static const bool INSURACE = false;
 
 // --- PLAYER ---
 //static const bool SPLIT_BY_FACE = true; // when false this means you cant split 10 - Q
-//surrender
-//double down after split
+//static const bool SURRENDER = false;
+//static const bool DOUBLE_DOWN_AFTER_SPLIT = false;
 
 // PLAYER LEARNER
 static const double MAX_ROUNDS = 100000;
