@@ -85,11 +85,11 @@ HandDealer::HandDealer(){
 }
 
 Card * HandDealer::get_upcard(){
-	return cards[1]; // second card is the upcard
+	return cards[0]; // first card is the upcard
 }
 
 Card * HandDealer::get_downcard(){
-	return cards[0];
+	return cards[1];
 }
 
 

@@ -30,7 +30,7 @@ class Shoe {
 	}
 
 	void shuffle(bool first){
-		if(!first && cards.size() > in_play.size())
+		if(!first && cards.size() < DECKS * CARDS_IN_DECK / 5) // if we are 4/5 of the way through
 			return;
 		std::cout << "Dealer shuffles\n";
 		count = 0;

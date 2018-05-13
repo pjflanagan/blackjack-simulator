@@ -18,5 +18,8 @@ int main(int argc, char *argv[]){
 	return 0;
 }
 
-
 // GETOPT
+// learner only version
+// ai and card counter only version (calculate house edge)
+// human and 2 ai's version
+// human and card counter version

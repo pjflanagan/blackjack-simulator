@@ -48,7 +48,7 @@ class PlayerCardCounter : public PlayerAI {
 			std::cout << name << " is broke\n";
 			return true;
 		}
-		if(table->get_count() < -10){
+		if(table->get_count() < COUNTER_QUIT){
 			std::cout << name << " cashes out because the table is cold\n";
 			return true;
 		}

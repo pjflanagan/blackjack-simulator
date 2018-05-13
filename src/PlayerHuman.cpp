@@ -46,6 +46,10 @@ class PlayerHuman : public Player {
 	}
 
 	bool is_done() override {
+		if(chips < MIN_BET){
+			std::cout << name << " is broke\n";
+			return true;
+		}
 		char response = '!';
 		while(response == '!'){
 			std::cout << "\nContinue [Y/N]: ";

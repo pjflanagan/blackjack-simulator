@@ -11,6 +11,8 @@ Table::Table(){
 	players.push_back(new PlayerCardCounter(this, "Rain Man"));
 	players.push_back(new PlayerHuman(this, "Danny Ocean"));
 	round_count = 0;
+	game_count = 0;
+	house_win_count = 0;
 }
 
 void Table::reset(){
@@ -50,18 +52,21 @@ void Table::round(){
 
 	//take turns
 	for(int i = 0; i < players.size(); ++i){
-		players[i]->turn();
+		players[i]->turn(); // RECORD IF THEY BUST
 	}
 
 	// dealer's turn
-	dealer.move();
+	//dealer.reveal(); // move reveal from the move and add a function
+	// if bust count < players.size() // if there are no players the dealer doesn't move
+		dealer.move();
 
 	std::cout << "\n";
 
 	// calculate payouts and print final holdings
 	// kick the player out if they have less than the min bet
+	game_count += players.size(); // not sure if this should count
 	for(int i = 0; i < players.size(); ++i){
-		players[i]->check_beats(dealer.get_hand());
+		players[i]->check_beats(dealer.get_hand()); // record the house wins here
 		if(players[i]->is_done()){ 
 			player_summary.push_back(players[i]->summary(round_count));
 			players.erase(players.begin() + i);

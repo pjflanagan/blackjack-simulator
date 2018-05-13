@@ -36,7 +36,8 @@ class Table {
 	int card_count;
 	std::vector<std::string> player_summary;
 	Player * counter;
-
+	int house_win_count;
+	int game_count;
 };
 
 
