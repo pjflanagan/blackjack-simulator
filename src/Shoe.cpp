@@ -15,7 +15,6 @@
 class Shoe {
 	public:
 	Shoe(){
-		count = 0;
 		for(int d = 0; d < DECKS; ++d){
 			// add a deck of cards to the shoe
 			Deck deck = Deck();
@@ -26,25 +25,25 @@ class Shoe {
 		}
 		std::cout << cards.size() << " cards in the shoe\n";
 		// shuffle the deck
+		reset();
 		shuffle(true);
 	}
 
-	void shuffle(bool first){
-		if(!first && cards.size() < DECKS * CARDS_IN_DECK / 5) // if we are 4/5 of the way through
-			return;
+	bool shuffle(bool first){
+		if(!first && current_card < 4 * DECKS * CARDS_IN_DECK / 5) // if we are 4/5 of the way through
+			return false;
 		std::cout << "Dealer shuffles\n";
-		count = 0;
 		reset();
 
   		// obtain a time-based seed:
   		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   		std::shuffle(cards.begin(), cards.end(), std::default_random_engine(seed));
+		return true;
 	}
 
 	Card * draw(bool is_burn){
-		Card * card = cards.front(); // get the front card
-		cards.erase(cards.begin()); // remove it from the array
-		in_play.push_back(card); // store it in play
+		Card * card = cards[current_card]; // get the front card
+		++current_card;
 		if(!is_burn){
 			if(card->is_ace() || card->value()==10)
 				count--;
@@ -55,21 +54,21 @@ class Shoe {
 	}
 
 	void reset(){
-		cards.insert(cards.end(), in_play.begin(), in_play.end()); // insert all the cards in play back into the deck
-		in_play.clear(); // clear the cards that are in play for the array to be used again
+		current_card = 0;
+		count = 0;
 	}
 
 	int get_count(){
-		int decks = (cards.size()) / 52;
+		int decks = (cards.size() - current_card) / 52; // estimated decks left
 		return count / decks;
 	}
 
 	private:
 
 	std::vector<Card *> cards;
-	std::vector<Card *> in_play;
 	int played;
 	int count;
+	int current_card;
 };
 
 #endif

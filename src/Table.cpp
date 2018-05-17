@@ -30,7 +30,9 @@ void Table::summary(){
 }
 
 void Table::shuffle(){
-	shoe.shuffle(false);
+	if(shoe.shuffle(false)){
+		dealer.burn();
+	};
 }
 
 void Table::play(){
@@ -93,7 +95,6 @@ int Table::get_count(){
 void Table::deal(){
 	std::cout << "\n";
 	dealer.shuffle(); // shuffle (only does it if it has to)
-	dealer.burn();
 	for(int i = 0; i < 2; ++i){
 		for(int p = 0; p < players.size(); ++p){
 			players[p]->add(dealer.deal(false)); // deal a card to each player
