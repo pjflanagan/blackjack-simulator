@@ -9,10 +9,12 @@ Table::Table(){
 	dealer = Dealer(this);
 	players.push_back(new PlayerAI(this, "Terry Benedict"));
 	players.push_back(new PlayerCardCounter(this, "Rain Man"));
-	players.push_back(new PlayerHuman(this, "Danny Ocean"));
+	players.push_back(new PlayerAI(this, "Danny Ocean")); // make a sit_down() function and have players sit down in Play
+	players.push_back(new PlayerCardCounter(this, "Card Counter"));
+	//players.push_back(new PlayerHuman(this, "Danny Ocean"));
 	round_count = 0;
-	game_count = 0;
-	house_win_count = 0;
+	//game_count = 0;
+	//house_win_count = 0;
 }
 
 void Table::reset(){
@@ -36,6 +38,7 @@ void Table::shuffle(){
 }
 
 void Table::play(){
+	dealer.burn();
 	round();
 }
 
@@ -66,7 +69,7 @@ void Table::round(){
 
 	// calculate payouts and print final holdings
 	// kick the player out if they have less than the min bet
-	game_count += players.size(); // not sure if this should count
+	//game_count += players.size(); // not sure if this should count
 	for(int i = 0; i < players.size(); ++i){
 		players[i]->check_beats(dealer.get_hand()); // record the house wins here
 		if(players[i]->is_done()){ 

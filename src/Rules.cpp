@@ -23,6 +23,7 @@ static const double BLACKJACK_PAYOUT = 1.5; // 3:2
 // --- CARDS ---
 static const int DECKS = 5;
 static const int CARDS_IN_DECK = 52;
+static const int CUT_POINT = 4 * DECKS * CARDS_IN_DECK / 5;
 static const std::string SUITS[4] = {"Spades", "Hearts", "Clubs", "Diamonds"};
 static const std::string FACES[13] = {
 	"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"

@@ -21,23 +21,19 @@ void Player::add(Card * c){
 
 void Player::check_beats(Hand * h){
 	int ds = h->sum();
-	if(h->has_ace() && ds + 10 <= 21) ds += 10;
-	//if player did bust
-	if(hand->is_bust());
-	//if dealer did bust
-	else if(h->is_bust()){
-		payout(hand, PAYOUT);
+	if(h->has_ace() && ds + 10 <= 21) ds += 10; //get the dealer's true sum
+	
+	if(hand->is_bust()); //if player did bust
+	else if(h->is_bust()){ //if dealer did bust
+		payout(hand, PAYOUT); //payout the player 
 	}
-	else {
-		// calculate who is higher
+	else { // calculate who is higher
 		int ps = hand->sum();
-		if(hand->has_ace() && ps + 10 <= 21) ps += 10; 
-		if(ps > ds)
-			payout(hand, PAYOUT);
-		else if(ps == ds)
-			payout(hand, PUSH);
-		else
-			payout(hand, LOSE);
+		if(hand->has_ace() && ps + 10 <= 21) ps += 10;  //get the player's true sum
+
+		if(ps > ds) payout(hand, PAYOUT);
+		else if(ps == ds) payout(hand, PUSH);
+		else payout(hand, LOSE);
 	}
 
 	if(is_split){

@@ -30,7 +30,7 @@ class Shoe {
 	}
 
 	bool shuffle(bool first){
-		if(!first && current_card < 4 * DECKS * CARDS_IN_DECK / 5) // if we are 4/5 of the way through
+		if(!first && current_card < CUT_POINT) // if we are 4/5 of the way through
 			return false;
 		std::cout << "Dealer shuffles\n";
 		reset();
@@ -53,17 +53,18 @@ class Shoe {
 		return card; // return the card pointer
 	}
 
-	void reset(){
-		current_card = 0;
-		count = 0;
-	}
-
 	int get_count(){
-		int decks = (cards.size() - current_card) / 52; // estimated decks left
+		int decks = (cards.size() - current_card) / CARDS_IN_DECK; // estimated decks left
+		if(decks == 0) decks = 1;
 		return count / decks;
 	}
 
 	private:
+
+	void reset(){
+		current_card = 0;
+		count = 0;
+	}
 
 	std::vector<Card *> cards;
 	int played;
